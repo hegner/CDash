@@ -93,9 +93,9 @@ $response = begin_JSON_response();
 if (isset($_GET['fileid']) && is_numeric($_GET['fileid'])) {
     $stmt = $pdo->prepare(
         "SELECT id, value, name FROM testmeasurement
-        WHERE outputid = :testid AND type = 'file'
+        WHERE outputid = :outputid AND type = 'file'
         ORDER BY id");
-    pdo_execute($stmt, [':testid' => $testid]);
+    pdo_execute($stmt, [':outputid' => $buildtest->outputid]);
     $result_array = $stmt->fetch();
 
     header('Content-type: tar/gzip');
